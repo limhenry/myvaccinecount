@@ -1,0 +1,13 @@
+{
+  "myvaccinecount": {
+    "reqtoken": "",
+    "twittertoken": "",
+    "twitterconsumerkey": "",
+    "twitterconsumersecret": "",
+    "twitteraccesstokenkey": "",
+    "twitteraccesstokensecret": "",
+    "telegramchatid": "",
+    "telegramtoken": "",
+    "dbpath": ""
+  }
+}
