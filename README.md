@@ -1,4 +1,4 @@
-# Malaysia Vaccine Progress Twitter Bot 🇲🇾 ([@MYVaccineCount](https://twitter.com/MYVaccineCount))
+# Malaysia Vaccine Tracker Twitter Bot 🇲🇾 ([@MYVaccineCount](https://twitter.com/MYVaccineCount))
 
 
 ![img](https://limhenry.xyz/images/projects/vaccine-dark.png)
