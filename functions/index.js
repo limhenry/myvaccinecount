@@ -41,7 +41,7 @@ exports.getDailyProgressGitHub = functions.https.onRequest(async (req, res) => {
     const dates = await getLatestDate(ref);
     const vax = await getVaxData(dates);
 
-    if (vax.slice(-1)[0].date !== dates[0]) return res.send(false);
+    if (vax[vax.length - 1].date !== dates[0]) return res.send(false);
     if (vax.length !== 14) return res.send("malaysia-data-not-complete");
 
     const tweetStr = await tweet(vax[vax.length - 1], config.totalPopulation);
