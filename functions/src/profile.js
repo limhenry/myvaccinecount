@@ -37,7 +37,7 @@ const draw = (ctx, img, data) => {
 };
 
 const drawProgressArc = (ctx, value, radius, angle, offset, width, color) => {
-  if (value < 5) return;
+  if (value < 4.25) return;
   ctx.beginPath();
   ctx.arc(200, 200, radius, angle + offset, (value / 100 * Math.PI * 2) + angle - offset, false);
   ctx.lineCap = "round";

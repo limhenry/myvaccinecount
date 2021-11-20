@@ -40,12 +40,13 @@ exports.getDailyProgressGitHub = functions.https.onRequest(async (req, res) => {
 
     const dates = await getLatestDate(ref);
     const vax = await getVaxData(dates);
+    const latestVax = vax[vax.length - 1];
 
-    if (vax[vax.length - 1].date !== dates[0]) return res.send(false);
+    if (latestVax.date !== dates[0]) return res.send(false);
     if (vax.length !== 14) return res.send("malaysia-data-not-complete");
 
-    const tweetStr = await tweet(vax[vax.length - 1], config.totalPopulation);
-    const profileImg = await profile(vax[vax.length - 1], config.totalPopulation);
+    const tweetStr = await tweet(latestVax, config.totalPopulation);
+    const profileImg = await profile(latestVax, config.totalPopulation);
     const headerImg = await header(vax);
 
     const profileOptions = {
@@ -70,12 +71,13 @@ exports.getDailyProgressGitHub = functions.https.onRequest(async (req, res) => {
 
     // For debug:
     // res.send(`
+    //   <style>body{font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-seri;}</style>
     //   <div style="white-space: pre-line;">${tweetStr}</div>
-    //   <img style="display: block;" src="${profileImg}">
+    //   <img style="display: block; border-radius: 50%;" src="${profileImg}">
     //   <img style="display: block;" src="${headerImg}">
     // `);
 
-    res.send(true);
+    return res.send(true);
   } catch (e) {
     console.log(e);
     await sendMessage(`️🚨🚨🚨 ERROR 🚨🚨🚨\n\n${e.stack}`, config.telegramChatId, config.telegramToken);
