@@ -26,29 +26,29 @@ describe("test: tweet.js", () => {
     expect(percentage).toBe("122.48");
   });
 
-  test("getProgress: 0 people should equal to ░░░░░░░░░░", () => {
+  test("getProgress: 0 people should equal to ░░░░░░░░░░░░░░░░░░░░", () => {
     const bar = getProgressBar(0, population);
-    expect(bar).toBe("░░░░░░░░░░");
+    expect(bar).toBe("░░░░░░░░░░░░░░░░░░░░");
   });
 
-  test("getProgress: 16,328,700 people should equal to ▓▓▓▓▓░░░░░", () => {
+  test("getProgress: 16,328,700 people should equal to ▓▓▓▓▓▓▓▓▓▓░░░░░░░░░░", () => {
     const bar = getProgressBar(16328700, population);
-    expect(bar).toBe("▓▓▓▓▓░░░░░");
+    expect(bar).toBe("▓▓▓▓▓▓▓▓▓▓░░░░░░░░░░");
   });
 
-  test("getProgress: 32,657,400 people should equal to ▓▓▓▓▓▓▓▓▓▓", () => {
+  test("getProgress: 32,657,400 people should equal to ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓", () => {
     const bar = getProgressBar(32657400, population);
-    expect(bar).toBe("▓▓▓▓▓▓▓▓▓▓");
+    expect(bar).toBe("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
   });
 
-  test("getProgress: 32,657,401 people should equal to ▓▓▓▓▓▓▓▓▓▓", () => {
+  test("getProgress: 32,657,401 people should equal to ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓", () => {
     const bar = getProgressBar(32657401, population);
-    expect(bar).toBe("▓▓▓▓▓▓▓▓▓▓");
+    expect(bar).toBe("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
   });
 
   // Making sure progress bar won't break if percentage is more than 100%
-  test("getProgress: 40,000,000 people should equal to ▓▓▓▓▓▓▓▓▓▓", () => {
+  test("getProgress: 40,000,000 people should equal to ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓", () => {
     const bar = getProgressBar(40000000, population);
-    expect(bar).toBe("▓▓▓▓▓▓▓▓▓▓");
+    expect(bar).toBe("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
   });
 });

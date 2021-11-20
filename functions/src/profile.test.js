@@ -6,6 +6,10 @@
 // const getProfileData = profile.__get__("getProfileData");
 // const population = 32657400;
 
+describe("test: profile.js", () => {
+  test.todo("some test to be written in the future");
+});
+
 // describe("test: profile.js", () => {
 //   test("getProfileData: ", () => {
 //     const profile = getProfileData({
