@@ -17,7 +17,7 @@ const getLatestDate = async (ref) => {
 };
 
 const fetchVaxCSV = async () => {
-  const baseUrl = "https://raw.githubusercontent.com/CITF-Malaysia/citf-public/main/vaccination";
+  const baseUrl = "https://raw.githubusercontent.com/MoH-Malaysia/covid19-public/main/vaccination";
   const req = await fetch(`${baseUrl}/vax_malaysia.csv`);
   return await req.text();
 };
