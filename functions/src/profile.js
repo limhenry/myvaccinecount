@@ -30,20 +30,23 @@ const draw = (ctx, img, data) => {
 
   ctx.drawImage(img, 0, 0, 400, 400);
 
-  drawProgressArc(ctx, 100, radius, angle, 0, width, "#2c41a4");
-  drawProgressArc(ctx, data.first, radius, angle, offset, width, "#c0f4b8");
-  drawProgressArc(ctx, data.second, radius, angle, offset, width, "#34cf1c");
-  drawProgressArc(ctx, data.booster, radius, angle, offset, width, "#138402");
+  const drawProgressArc = drawArc(ctx, radius, angle, width);
+  drawProgressArc(100, 0, "#2c41a4");
+  drawProgressArc(data.first, offset, "#c0f4b8");
+  drawProgressArc(data.second, offset, "#34cf1c");
+  drawProgressArc(data.booster, offset, "#138402");
 };
 
-const drawProgressArc = (ctx, value, radius, angle, offset, width, color) => {
-  if (value < 4.25) return;
-  ctx.beginPath();
-  ctx.arc(200, 200, radius, angle + offset, (value / 100 * Math.PI * 2) + angle - offset, false);
-  ctx.lineCap = "round";
-  ctx.strokeStyle = color;
-  ctx.lineWidth = width;
-  ctx.stroke();
+const drawArc = (ctx, radius, angle, width) => {
+  return (value, offset, color) => {
+    if (value < 4.25) return;
+    ctx.beginPath();
+    ctx.arc(200, 200, radius, angle + offset, (value / 100 * Math.PI * 2) + angle - offset, false);
+    ctx.lineCap = "round";
+    ctx.strokeStyle = color;
+    ctx.lineWidth = width;
+    ctx.stroke();
+  };
 };
 
 module.exports = render;
