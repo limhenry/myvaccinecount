@@ -7,8 +7,9 @@ const getConfig = (data, width, height) => {
     data: {
       labels: data.labels,
       datasets: [{
+        id: "first",
         type: "bar",
-        label: "1st Dose   ",
+        label: "Partially Vax",
         data: data.first,
         backgroundColor: "#53b544",
         borderColor: "#53b544",
@@ -16,8 +17,9 @@ const getConfig = (data, width, height) => {
           align: "start",
         },
       }, {
+        id: "second",
         type: "bar",
-        label: "2nd Dose   ",
+        label: "Fully Vax   ",
         data: data.second,
         backgroundColor: "#2e2366",
         borderColor: "#2e2366",
@@ -26,7 +28,7 @@ const getConfig = (data, width, height) => {
         },
       }, {
         type: "bar",
-        label: "Booster",
+        label: "Boosters   ",
         data: data.booster,
         backgroundColor: "#326e55",
         borderColor: "#326e55",
@@ -62,6 +64,7 @@ const getConfig = (data, width, height) => {
         padding: -10,
       },
       legend: {
+        reverse: true,
         labels: {
           usePointStyle: true,
           boxWidth: 10,
@@ -106,6 +109,9 @@ const getConfig = (data, width, height) => {
             weight: "bold",
           },
           formatter: (value, e) => {
+            if (e.dataset.id === "first" || e.dataset.id === "second") {
+              return "";
+            }
             if (e.dataset.id === "sum") {
               value = data.sum[e.dataIndex];
             }

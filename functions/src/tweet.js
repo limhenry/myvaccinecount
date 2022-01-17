@@ -5,7 +5,7 @@ const getPercentage = (value, population) => {
 const getProgressBar = (value, population) => {
   const full = "▓";
   const empty = "░";
-  const width = 20;
+  const width = 18;
   const pop = Math.min(Math.max(value, 0), population);
   const progress = pop / population * 100;
   const progressInt = Math.floor(progress * width / 100);
@@ -55,15 +55,15 @@ const getTweet = (data, population) => {
   const e = getTweetData(data, population);
 
   const arr = [
-    `Fully Vax: ${e.fully_pct}% (+${e.fully_pp})`,
-    `${e.fully_bar}`,
-    "",
-    `Booster: ${e.booster_pct}% (+${e.booster_pp})`,
+    `Boosted: ${e.booster_pct}% (+${e.booster_pp} pp)`,
     `${e.booster_bar}`,
+    "",
+    `At Least 1 Dose: ${e.partial_pct}% (+${e.partial_pp} pp)`,
+    `Fully Vax: ${e.fully_pct}% (+${e.fully_pp} pp)`,
     "",
     `At Least 1 Dose: ${e.cumul_partial} (+${e.daily_partial})`,
     `Fully Vax: ${e.cumul_full} (+${e.daily_full})`,
-    `Booster: ${e.cumul_booster} (+${e.daily_booster})`,
+    `Boosters: ${e.cumul_booster} (+${e.daily_booster})`,
     `Total: ${e.cumul_total} (+${e.cumul_daily})`,
     "",
     `${e.date}`,
