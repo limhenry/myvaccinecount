@@ -9,7 +9,7 @@ const getConfig = (data, width, height) => {
       datasets: [{
         id: "first",
         type: "bar",
-        label: "Partially Vax",
+        label: "At least 1 dose",
         data: data.first,
         backgroundColor: "#53b544",
         borderColor: "#53b544",
@@ -19,7 +19,7 @@ const getConfig = (data, width, height) => {
       }, {
         id: "second",
         type: "bar",
-        label: "Fully Vax   ",
+        label: "2 Doses   ",
         data: data.second,
         backgroundColor: "#2e2366",
         borderColor: "#2e2366",
@@ -28,7 +28,7 @@ const getConfig = (data, width, height) => {
         },
       }, {
         type: "bar",
-        label: "Boosters   ",
+        label: "3 Doses   ",
         data: data.booster,
         backgroundColor: "#326e55",
         borderColor: "#326e55",
