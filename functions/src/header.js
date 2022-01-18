@@ -9,7 +9,7 @@ const getConfig = (data, width, height) => {
       datasets: [{
         id: "first",
         type: "bar",
-        label: "At least 1 dose",
+        label: "1 Dose   ",
         data: data.first,
         backgroundColor: "#53b544",
         borderColor: "#53b544",
@@ -28,7 +28,7 @@ const getConfig = (data, width, height) => {
         },
       }, {
         type: "bar",
-        label: "3 Doses   ",
+        label: "3 Doses",
         data: data.booster,
         backgroundColor: "#326e55",
         borderColor: "#326e55",
@@ -64,7 +64,6 @@ const getConfig = (data, width, height) => {
         padding: -10,
       },
       legend: {
-        reverse: true,
         labels: {
           usePointStyle: true,
           boxWidth: 10,
