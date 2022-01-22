@@ -55,7 +55,7 @@ const getTweet = (data, population) => {
   const e = getTweetData(data, population);
 
   const arr = [
-    `3 Doses: ${e.booster_pct}% (+${e.booster_pp} pp)`,
+    `Booster: ${e.booster_pct}% (+${e.booster_pp} pp)`,
     `${e.booster_bar}`,
     "",
     `At Least 1 Dose: ${e.partial_pct}% (+${e.partial_pp} pp)`,
@@ -63,7 +63,7 @@ const getTweet = (data, population) => {
     "",
     `At Least 1 Dose: ${e.cumul_partial} (+${e.daily_partial})`,
     `2 Doses: ${e.cumul_full} (+${e.daily_full})`,
-    `3 Doses: ${e.cumul_booster} (+${e.daily_booster})`,
+    `Booster: ${e.cumul_booster} (+${e.daily_booster})`,
     `Total: ${e.cumul_total} (+${e.cumul_daily})`,
     "",
     `${e.date}`,

@@ -28,7 +28,7 @@ const getConfig = (data, width, height) => {
         },
       }, {
         type: "bar",
-        label: "3 Doses",
+        label: "Booster",
         data: data.booster,
         backgroundColor: "#326e55",
         borderColor: "#326e55",
