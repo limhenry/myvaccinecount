@@ -104,13 +104,10 @@ const getConfig = (data, width, height) => {
           display: "auto",
           color: "white",
           font: {
-            size: 19.5,
+            size: 18,
             weight: "bold",
           },
           formatter: (value, e) => {
-            if (e.dataset.id === "first" || e.dataset.id === "second") {
-              return "";
-            }
             if (e.dataset.id === "sum") {
               value = data.sum[e.dataIndex];
             }
