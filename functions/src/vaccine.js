@@ -24,6 +24,22 @@ const fetchVaxCSV = async () => {
 
 const parseVaxCSV = async (csv, dates) => {
   const arr = csv.split(/\n/);
+  const headers = arr[0].split(",");
+  const index = {
+    "date": 0,
+    "daily_partial": 1,
+    "daily_full": 2,
+    "daily_booster": 3,
+    "cumul_partial": 9,
+    "cumul_full": 10,
+    "cumul_booster": 11,
+    "cumul": 12,
+  };
+
+  Object.keys(index).forEach((e) => {
+    if (headers[index[e]] !== e) throw new Error("CSV headers are not correct");
+  });
+
   return arr
       .filter((e) => {
         const data = e.split(",");
@@ -32,14 +48,14 @@ const parseVaxCSV = async (csv, dates) => {
       .map((e) => {
         const data = e.split(",");
         return {
-          date: data[0],
-          daily_partial: parseInt(data[1]),
-          daily_full: parseInt(data[2]),
-          daily_booster: parseInt(data[6]),
-          cumul_partial: parseInt(data[7]),
-          cumul_full: parseInt(data[8]),
-          cumul: parseInt(data[9]),
-          cumul_booster: parseInt(data[12]),
+          date: data[index.date],
+          daily_partial: parseInt(data[index.daily_partial]),
+          daily_full: parseInt(data[index.daily_full]),
+          daily_booster: parseInt(data[index.daily_booster]),
+          cumul_partial: parseInt(data[index.cumul_partial]),
+          cumul_full: parseInt(data[index.cumul_full]),
+          cumul_booster: parseInt(data[index.cumul_booster]),
+          cumul: parseInt(data[index.cumul]),
         };
       });
 };
