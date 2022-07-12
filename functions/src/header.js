@@ -28,10 +28,19 @@ const getConfig = (data, width, height) => {
         },
       }, {
         type: "bar",
-        label: "Booster",
+        label: "1st Booster   ",
         data: data.booster,
-        backgroundColor: "#326e55",
-        borderColor: "#326e55",
+        backgroundColor: "#158305",
+        borderColor: "#158305",
+        datalabels: {
+          align: "start",
+        },
+      }, {
+        type: "bar",
+        label: "2nd Booster",
+        data: data.booster2,
+        backgroundColor: "#165d0b",
+        borderColor: "#165d0b",
         datalabels: {
           align: "start",
         },
@@ -132,6 +141,7 @@ const getChartData = (data) => {
     first: [],
     second: [],
     booster: [],
+    booster2: [],
     sum: [],
     labels: [],
   };
@@ -146,7 +156,8 @@ const getChartData = (data) => {
     results.first[i] = e.daily_partial;
     results.second[i] = e.daily_full;
     results.booster[i] = e.daily_booster;
-    results.sum[i] = e.daily_partial + e.daily_full + e.daily_booster;
+    results.booster2[i] = e.daily_booster2;
+    results.sum[i] = e.daily_partial + e.daily_full + e.daily_booster + e.daily_booster2;
     results.labels[i] = new Date(data[i].date).toLocaleDateString("en", dateOptions);
   }
 

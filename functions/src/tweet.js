@@ -44,7 +44,7 @@ const getTweetData = (data, population) => {
     daily_booster: nf.format(data.daily_booster),
     // Third Section
     cumul_total: nf.format(data.cumul),
-    cumul_daily: nf.format(data.daily_partial + data.daily_full + data.daily_booster),
+    cumul_daily: nf.format(data.daily_partial + data.daily_full + data.daily_booster + data.daily_booster2),
     // Forth Section
     date: date.replace(/\//g, "-"),
   };
@@ -55,7 +55,7 @@ const getTweet = (data, population) => {
   const e = getTweetData(data, population);
 
   const arr = [
-    `Booster: ${e.booster_pct}% (+${e.booster_pp} pp)`,
+    `1st Booster: ${e.booster_pct}% (+${e.booster_pp} pp)`,
     `${e.booster_bar}`,
     "",
     `At Least 1 Dose: ${e.partial_pct}% (+${e.partial_pp} pp)`,
@@ -63,7 +63,7 @@ const getTweet = (data, population) => {
     "",
     `At Least 1 Dose: ${e.cumul_partial} (+${e.daily_partial})`,
     `2 Doses: ${e.cumul_full} (+${e.daily_full})`,
-    `Booster: ${e.cumul_booster} (+${e.daily_booster})`,
+    `1st Booster: ${e.cumul_booster} (+${e.daily_booster})`,
     `Total: ${e.cumul_total} (+${e.cumul_daily})`,
     "",
     `${e.date}`,

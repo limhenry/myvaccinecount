@@ -19,6 +19,7 @@ const getProfileData = (data, population) => {
     first: data.cumul_partial / population * 100,
     second: data.cumul_full / population * 100,
     booster: data.cumul_booster / population * 100,
+    booster2: data.cumul_booster2 / population * 100,
   };
 };
 
@@ -34,7 +35,8 @@ const draw = (ctx, img, data) => {
   drawProgressArc(100, 0, "#2c41a4");
   drawProgressArc(data.first, offset, "#c0f4b8");
   drawProgressArc(data.second, offset, "#34cf1c");
-  drawProgressArc(data.booster, offset, "#138402");
+  drawProgressArc(data.booster, offset, "#158305");
+  drawProgressArc(data.booster2, offset, "#165d0b");
 };
 
 const drawArc = (ctx, radius, angle, width) => {

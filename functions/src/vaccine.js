@@ -30,10 +30,12 @@ const parseVaxCSV = async (csv, dates) => {
     "daily_partial": 1,
     "daily_full": 2,
     "daily_booster": 3,
-    "cumul_partial": 9,
-    "cumul_full": 10,
-    "cumul_booster": 11,
-    "cumul": 12,
+    "daily_booster2": 4,
+    "cumul_partial": 14,
+    "cumul_full": 15,
+    "cumul_booster": 16,
+    "cumul_booster2": 17,
+    "cumul": 18,
   };
 
   Object.keys(index).forEach((e) => {
@@ -52,9 +54,11 @@ const parseVaxCSV = async (csv, dates) => {
           daily_partial: parseInt(data[index.daily_partial]),
           daily_full: parseInt(data[index.daily_full]),
           daily_booster: parseInt(data[index.daily_booster]),
+          daily_booster2: parseInt(data[index.daily_booster2]),
           cumul_partial: parseInt(data[index.cumul_partial]),
           cumul_full: parseInt(data[index.cumul_full]),
           cumul_booster: parseInt(data[index.cumul_booster]),
+          cumul_booster2: parseInt(data[index.cumul_booster2]),
           cumul: parseInt(data[index.cumul]),
         };
       });
