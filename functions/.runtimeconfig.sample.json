@@ -8,6 +8,7 @@
     "twitteraccesstokensecret": "",
     "telegramchatid": "",
     "telegramtoken": "",
-    "dbpath": ""
+    "dbpath": "",
+    "mastodonaccesstoken": ""
   }
 }
