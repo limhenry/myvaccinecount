@@ -1,35 +1,22 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
-const Twitter = require("twitter-lite");
 const {getLatestDate, getVaxData} = require("./src/vaccine");
 const tweet = require("./src/tweet");
 const profile = require("./src/profile");
 const header = require("./src/header");
 const sendMessage = require("./src/telegram");
+const postToTwitter = require("./src/twitter");
+const postToMastodon = require("./src/mastodon");
 
 admin.initializeApp();
 
 const config = {
   reqToken: functions.config().myvaccinecount.reqtoken,
-  twitterToken: functions.config().myvaccinecount.twittertoken,
-  twitterConsumerKey: functions.config().myvaccinecount.twitterconsumerkey,
-  twitterConsumerSecret: functions.config().myvaccinecount.twitterconsumersecret,
-  twitterAccessTokenKey: functions.config().myvaccinecount.twitteraccesstokenkey,
-  twitterAccessTokenSecret: functions.config().myvaccinecount.twitteraccesstokensecret,
   telegramToken: functions.config().myvaccinecount.telegramtoken,
   telegramChatId: functions.config().myvaccinecount.telegramchatid,
   dbPath: functions.config().myvaccinecount.dbpath,
-  totalPopulation: 32657400,
+  totalPopulation: 32657100,
 };
-
-const twitterClient = new Twitter({
-  subdomain: "api",
-  version: "1.1",
-  consumer_key: config.twitterConsumerKey,
-  consumer_secret: config.twitterConsumerSecret,
-  access_token_key: config.twitterAccessTokenKey,
-  access_token_secret: config.twitterAccessTokenSecret,
-});
 
 exports.getDailyProgressGitHub = functions.https.onRequest(async (req, res) => {
   if (req.method !== "POST") return res.status(404).send();
@@ -49,22 +36,8 @@ exports.getDailyProgressGitHub = functions.https.onRequest(async (req, res) => {
     const profileImg = await profile(latestVax, config.totalPopulation);
     const headerImg = await header(vax);
 
-    const profileOptions = {
-      image: profileImg.split(",")[1],
-    };
-    const headerOptions = {
-      banner: headerImg.split(",")[1],
-      width: 1500,
-      height: 500,
-      offset_left: 0,
-      offset_top: 0,
-    };
-
-    await Promise.all([
-      twitterClient.post("statuses/update", {status: tweetStr}),
-      twitterClient.post("account/update_profile_image", profileOptions),
-      twitterClient.post("account/update_profile_banner", headerOptions),
-    ]);
+    postToMastodon({tweetStr, profileImg, headerImg});
+    postToTwitter({tweetStr, profileImg, headerImg});
 
     await ref.child(dates[0]).set(true);
     await sendMessage(`${dates[0]}: OK`, config.telegramChatId, config.telegramToken);

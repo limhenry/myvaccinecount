@@ -3,20 +3,17 @@
   "description": "Cloud Functions for Firebase",
   "scripts": {
     "lint": "eslint .",
-    "serve": "firebase serve --only functions",
+    "serve": "firebase serve --only functions --port 8080",
     "shell": "firebase functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log",
     "test": "jest"
   },
-  "engines": {
-    "node": "12"
-  },
   "main": "index.js",
   "dependencies": {
     "@firebase/database-compat": "0.1.2",
-    "canvas": "^2.8.0",
+    "canvas": "^2.11.2",
     "chart.js": "^2.9.4",
     "chartjs-node-canvas": "^3.2.0",
     "chartjs-plugin-datalabels": "^1.0.0",
