@@ -1,40 +1,33 @@
 const functions = require("firebase-functions");
-const Twitter = require("twitter-lite");
+const {TwitterApi} = require("twitter-api-v2");
 
 const config = {
-  twitterToken: functions.config().myvaccinecount.twittertoken,
-  twitterConsumerKey: functions.config().myvaccinecount.twitterconsumerkey,
-  twitterConsumerSecret: functions.config().myvaccinecount.twitterconsumersecret,
-  twitterAccessTokenKey: functions.config().myvaccinecount.twitteraccesstokenkey,
-  twitterAccessTokenSecret: functions.config().myvaccinecount.twitteraccesstokensecret,
+  appKey: functions.config().myvaccinecount.twitterconsumerkey,
+  appSecret: functions.config().myvaccinecount.twitterconsumersecret,
+  accessToken: functions.config().myvaccinecount.twitteraccesstokenkey,
+  accessSecret: functions.config().myvaccinecount.twitteraccesstokensecret,
 };
 
-const twitterClient = new Twitter({
-  subdomain: "api",
-  version: "1.1",
-  consumer_key: config.twitterConsumerKey,
-  consumer_secret: config.twitterConsumerSecret,
-  access_token_key: config.twitterAccessTokenKey,
-  access_token_secret: config.twitterAccessTokenSecret,
-});
+const client = new TwitterApi(config);
 
 const postToTwitter = async ({tweetStr, profileImg, headerImg}) => {
-  const profileOptions = {
-    image: profileImg.split(",")[1],
-  };
+  // const profileOptions = {
+  //   image: profileImg.split(",")[1],
+  // };
 
-  const headerOptions = {
-    banner: headerImg.split(",")[1],
-    width: 1500,
-    height: 500,
-    offset_left: 0,
-    offset_top: 0,
-  };
+  // const headerOptions = {
+  //   banner: headerImg.split(",")[1],
+  //   width: 1500,
+  //   height: 500,
+  //   offset_left: 0,
+  //   offset_top: 0,
+  // };
 
   await Promise.all([
-    twitterClient.post("statuses/update", {status: tweetStr}),
-    twitterClient.post("account/update_profile_image", profileOptions),
-    twitterClient.post("account/update_profile_banner", headerOptions),
+    client.v2.tweet(tweetStr),
+    // Disable update profile image and banner due to missing support for v2
+    // twitterClient.post("account/update_profile_image", profileOptions),
+    // twitterClient.post("account/update_profile_banner", headerOptions),
   ]);
 };
 
